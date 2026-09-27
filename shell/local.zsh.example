@@ -1,0 +1,50 @@
+# Machine PATH. install.sh copies this to ~/.config/mthirty/local.zsh.
+# Edit that copy. It is not committed.
+
+[[ -d /opt/homebrew/opt/openjdk@17/bin ]] && export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+[[ -d /opt/homebrew/opt/openjdk@21/bin ]] && export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+[[ -d /opt/homebrew/opt/llvm/bin ]] && export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+[[ -d "$HOME/.maestro/bin" ]] && export PATH="$PATH:$HOME/.maestro/bin"
+if [[ -d "$HOME/Library/Android/sdk" ]]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+  export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
+fi
+export PATH="$HOME/.local/bin:$PATH"
+
+# Node from nvm's default version, without sourcing nvm on every shell start.
+export NVM_DIR="$HOME/.nvm"
+if [[ -d "$NVM_DIR" ]]; then
+  _nvm_default_bin() {
+    emulate -L zsh
+    local alias_name version
+    [[ -r "$NVM_DIR/alias/default" ]] || return 1
+    alias_name="${$(<"$NVM_DIR/alias/default")//[[:space:]]/}"
+    [[ -n "$alias_name" ]] || return 1
+    if [[ -x "$NVM_DIR/versions/node/$alias_name/bin/node" ]]; then
+      print -r -- "$NVM_DIR/versions/node/$alias_name/bin"
+      return 0
+    fi
+    version="$(command ls -1d "$NVM_DIR"/versions/node/v*(N) 2>/dev/null | command sort -V | command tail -1)"
+    [[ -n "$version" && -x "$version/bin/node" ]] || return 1
+    print -r -- "$version/bin"
+  }
+  if _bin="$(_nvm_default_bin)"; then
+    export PATH="$_bin:$PATH"
+  fi
+  unset -f _nvm_default_bin
+  unset _bin
+
+  nvm() {
+    unset -f nvm
+    [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+    [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+    nvm "$@"
+  }
+fi
+
+# >>> grok installer >>>
+if [[ -d "$HOME/.grok/bin" ]]; then
+  export PATH="$HOME/.grok/bin:$PATH"
+  fpath=("$HOME/.grok/completions/zsh" $fpath)
+fi
+# <<< grok installer <<<

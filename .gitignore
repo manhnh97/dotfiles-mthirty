@@ -1,0 +1,9 @@
+.DS_Store
+*.swp
+*~
+*.un~
+*.pre-dotfiles
+
+# Per-machine PATH. The committed template is shell/local.zsh.example.
+shell/local.zsh
+.config/mthirty/
