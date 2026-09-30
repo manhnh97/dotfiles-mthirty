@@ -86,6 +86,8 @@ A command that starts with a space is not written to history.
 | `g st` | Short git status. Also `g df`, `g lg`, `g cm` |
 | `venv` | Create `.venv` with uv and activate it |
 | `ports` | Show listening TCP ports. `ports 8200` checks one |
+| `hosts` | List SSH servers from `~/.ssh/config` |
+| `s` | Pick an SSH server and connect. `s name` skips the picker |
 | `identify file` | File type and the first 64 bytes |
 | `reload` | Restart the shell |
 
@@ -136,7 +138,7 @@ Esc in Neovim stays instant. tmux does not delay it.
 | `install.sh` | Symlink into `$HOME` and install Neovim, tmux, fzf-lua |
 | `shell/zshrc` | Prompt, history, fzf, zoxide |
 | `shell/aliases.zsh` | Short commands |
-| `shell/functions.zsh` | `cs`, `ports`, `venv`, `identify`, `tm` |
+| `shell/functions.zsh` | `cs`, `ports`, `venv`, `identify`, `hosts`, `s`, `tm` |
 | `shell/vimmode.zsh` | Vi keys on the command line |
 | `shell/p10k.zsh` | Prompt. Directory and branch are plain text |
 | `shell/local.zsh.example` | Template for this machine's PATH |
