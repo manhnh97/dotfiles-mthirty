@@ -52,6 +52,14 @@ That file is created from `shell/local.zsh.example` and is not committed. Put JD
 
 In Warp, set **Settings > Appearance > Input** to **Shell (PS1)** so this prompt is the one you see. Set **Enforce minimum contrast** to **Never** if the prompt colors look gray.
 
+6. On a Mac, apply the keyboard settings:
+
+```bash
+./macos/keyboard.sh
+```
+
+That turns off the accent popup so held keys repeat, speeds up the repeat, lets Tab reach every control, and starts Rectangle. Snap the focused window with Control-Option and an arrow. Control-Option-Return fills the screen. Log out once if Tab still skips buttons.
+
 ## Daily use
 
 The command line is Vi.
