@@ -127,7 +127,8 @@ Prefix is `Ctrl-a`. The status bar shows `PREFIX` while it waits for the next ke
 | `Ctrl-a` then `H` `J` `K` `L` | Resize the pane |
 | `Ctrl-a` then `c` | New window, same directory |
 | `Ctrl-a` then `s` | Session list |
-| `Ctrl-a` then `[`, then `v` / `y` | Select text and copy |
+| `Ctrl-a` then `[`, then `v`, then `y` or Enter | Select text. The selection replaces the clipboard |
+| Drag, double-click, or triple-click | Copy the selection, the word, or the line |
 
 Esc in Neovim stays instant. tmux does not delay it.
 
